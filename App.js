@@ -1,17 +1,20 @@
-import { NativeBaseProvider } from 'native-base';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Provider } from "react-redux";
+import store from './src/redux/store'
+import { NativeBaseProvider } from "native-base";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet } from "react-native";
 import { Feather, AntDesign, Fontisto } from "@expo/vector-icons";
-import HomeScreen from './src/screens/HomeScreen';
-import ProfileScreen from './src/screens/ProfileScreen';
-import FavScreen from './src/screens/FavScreen';
+import HomeScreen from "./src/screens/HomeScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
+import FavScreen from "./src/screens/FavScreen";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
-    <NativeBaseProvider>
+    <Provider store={store}>
+      <NativeBaseProvider>
         <NavigationContainer>
           <Tab.Navigator>
             <Tab.Screen
@@ -46,7 +49,8 @@ export default function App() {
             />
           </Tab.Navigator>
         </NavigationContainer>
-    </NativeBaseProvider>
+      </NativeBaseProvider>
+    </Provider>
   );
 }
 
@@ -55,6 +59,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "start",
   },
 });
